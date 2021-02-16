@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
+
+    <style>
+    h1, table, th, td {
+    padding: 5px;
+    text-align:center;
+    }
+    table.center {
+    margin-left: auto;
+    margin-right: auto;
+    }
+    </style>
+</head>
+
+<body>
+	<h1>User Details</h1>
+	<table border="1" class="center">
+       <thead>
+            <tr>
+                <th>Address</th>
+                <th>Credit Score</th>
+                <th>Email</th>
+                <th>Mobile</th>
+                <th>Name</th>
+                <th>Pan</th>
+                <th>Total no of Accounts</th>
+            </tr>
+        </thead>
+        <tbody th:each="user : ${allusers}">
+        <tr th:each="use : ${user.data}">
+            <td th:text="${use.address}"></td>
+            <td th:text="${use.credit_score}"></td>
+            <td th:text="${use.email}"></td>
+            <td th:text="${use.mobile}"></td>
+            <td th:text="${use.name}"></td>
+            <td th:text="${use.pan}"></td>
+            <td th:text="${use.total_number_of_accounts}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <table border="1" style="margin-top: 30px" class="center">
+        <thead>
+        <tr>
+            <th>Sanction Amount</th>
+            <th>Lender</th>
+            <th>Current Balance</th>
+            <th>Date Opened</th>
+            <th>Type</th>
+            <th>Account no</th>
+            <th>Amount Overdue</th>
+            <th>Date Reported</th>
+        </tr>
+        </thead>
+        <div th:each="user : ${allusers}">
+        <tbody th:each="use : ${user.data}">
+        <tr th:each="us : ${use.accounts}">
+            <td th:text="${us.sanction_amount}"></td>
+            <td th:text="${us.lender}"></td>
+            <td th:text="${us.current_balance}"></td>
+            <td th:text="${us.date_opened}"></td>
+            <td th:text="${us.type}"></td>
+            <td th:text="${us.account_no}"></td>
+            <td th:text="${us.amount_overdue}"></td>
+            <td th:text="${us.date_reported}"></td>
+        </tr>
+        </tbody>
+        </div>
+    </table>
+</body>
+</html>
